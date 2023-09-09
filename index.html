@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8">
   <title></title>
-  <styler>
-    body{
-    background-color: lightblue;
-    text-align:center;
-    }
-
-    .lds-ring {
+  <style>
+      body {
+        background-color: lightblue;
+        text-align: center;
+      }
+      
+      .lds-ring {
   display: inline-block;
   position: relative;
   width: 80px;
@@ -45,29 +45,32 @@
   }
 }
 
-  </styler>
+  </style>
 </head>
 <body>
-<script>
-  const AS_URL_BASE = "";
+  <script>
+    const AS_URL_BASE = "https://script.google.com/macros/s/AKfycbxmpr9PrhxFm-BDq7RZ1X6ytsxBC-m72oMHNnaJlEJ33Sm1MQsPZtcgItdbsIhMYSgYdA/exec";
+    
+    var url = document.location.href;
+    var k = url.substr(url.lastIndexOf("k=")+2);
+    
+    if(k){
+      fetch(AS_URL_BASE+'?k='+k)
+      .then(r => r.text())
+      .then((r) => {
+        console.log(r);
+        //document.write(r);
+        if(r){
+          document.location.replace(r);
+        }
+      })
+      .catch(err => console.log(err))
+    }
 
-  var url = document.location.href;
-  var k = url.substr(utl.lastIndexOf("k=")+2); // 
-
-  if(k){
-    fatch(AS_URL_BASE+'?k=´+k)
-          .then(r => r.text())
-          .then((r) => {
-            console.log(r);
-            //document.write(r);
-            if(r){
-              document.location.replace(r);
-            }
-          })
-          .catch(err => console.log(err))
-          }
-          
-<div class="lds-ring"><div></div><div></div><div></div><div></div></div>
-</script>
+  </script>
+  
+  <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+  
+  
 </body>
 </html>
